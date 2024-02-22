@@ -8,19 +8,29 @@ interface ExerciseFormData {
   name: string;
 }
 
+interface SetFormData {
+  weight: number;
+  reps: number;
+}
+
 export interface Exercise {
   id: string;
   name: string;
-  sets?: ExerciseSet[];
+  sets: ExerciseSet[];
 }
 
 const exercises: Exercise[] = [
-  { id: "1", name: "Benchpress" },
-  { id: "2", name: "Deadlifts" },
-  { id: "3", name: "Squats" },
-  { id: "4", name: "Situps" },
-  { id: "5", name: "Spinning" },
+  { id: "1", name: "Benchpress", sets: [] },
+  { id: "2", name: "Deadlifts", sets: [] },
+  { id: "3", name: "Squats", sets: [] },
+  { id: "4", name: "Situps", sets: [] },
+  { id: "5", name: "Spinning", sets: [] },
 ];
+
+export function saveSet(id: string, setData: SetFormData) {
+  const exercise = getExercise(id);
+  exercise?.sets.push(setData);
+}
 
 export function getExercises() {
   return exercises;
@@ -38,6 +48,7 @@ export function saveExercise(exercise: ExerciseFormData) {
 
   if (!exerciseInDb.id) {
     exerciseInDb.id = Date.now().toString();
+    exerciseInDb.sets = [];
     exercises.push(exerciseInDb);
   }
 
