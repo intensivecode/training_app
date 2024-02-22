@@ -1,26 +1,16 @@
-import Exercises from "./components/Exercises";
-import ExerciseModal from "./components/ExerciseModal";
-import { useEffect, useState } from "react";
-import { Exercise, getExercises } from "./services/fakeExerciseService";
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 
 export default function App() {
-  const [exercises, setExercises] = useState<Exercise[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const exercises = getExercises();
-    setExercises(exercises);
+    navigate("/exercises");
   }, []);
-
-  function handleSave() {
-    const exercises = getExercises();
-    setExercises([...exercises]);
-  }
 
   return (
     <div className="bg-base-100">
-      <h1 className="text-3xl font-bold text-center py-10">Training App</h1>
-      <Exercises exercises={exercises} />
-      <ExerciseModal onSave={handleSave} />
+      <Outlet />
     </div>
   );
 }
