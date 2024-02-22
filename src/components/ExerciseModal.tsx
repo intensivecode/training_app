@@ -29,12 +29,14 @@ export default function ExerciseModal({ onSave }: Props) {
 
   return (
     <>
-      <button
-        onClick={() => modalRef.current?.showModal()}
-        className="btn btn-primary text-white ml-4"
-      >
-        New Exercise
-      </button>
+      <div className="text-center mt-4">
+        <button
+          onClick={() => modalRef.current?.showModal()}
+          className="btn btn-primary text-white ml-4"
+        >
+          New Exercise
+        </button>
+      </div>
       <dialog id="modal" className="modal" ref={modalRef}>
         <form
           onSubmit={handleSubmit(onSubmit)}
