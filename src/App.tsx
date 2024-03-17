@@ -5,7 +5,7 @@ export default function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate("/exercises");
+    navigate("/sessions");
   }, []);
 
   return (
